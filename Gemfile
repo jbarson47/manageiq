@@ -14,7 +14,8 @@ gem "manageiq-gems-pending", ">0", :require => 'manageiq-gems-pending', :git => 
 # when using this Gemfile inside a providers Gemfile, the dependency for the provider is already declared
 def manageiq_plugin(plugin_name)
   unless dependencies.detect { |d| d.name == plugin_name }
-    gem plugin_name, :git => "https://github.com/ManageIQ/#{plugin_name}", :tag => "najdorf-1.3"
+    gem plugin_name, :git => "https://github.com/ManageIQ/#{plugin_name}", :tag => "najdorf-1.3" unless ["manageiq-ui-classic", "manageiq-providers-vmware"].include?(plugin_name)
+    gem plugin_name, :git => "https://github.com/jbarson47/#{plugin_name}", :branch => "najdorf" if ["manageiq-ui-classic", "manageiq-providers-vmware"].include?(plugin_name)
   end
 end
 
@@ -26,7 +27,7 @@ gem "activerecord-virtual_attributes",  "~>3.0.0"
 gem "acts_as_tree",                     "~>2.7" # acts_as_tree needs to be required so that it loads before ancestry
 gem "ancestry",                         "~>4.1.0",           :require => false
 gem "aws-sdk-s3",                       "~>1.0",             :require => false # For FileDepotS3
-gem "bcrypt",                           "~> 3.1.10",         :require => false
+gem "bcrypt",                           "=3.1.18",         :require => false
 gem "bootsnap",                         ">= 1.4.2",          :require => false
 gem "bundler",                          "~> 2.1", ">= 2.1.4", "!= 2.2.10", :require => false
 gem "byebug",                                                :require => false
@@ -47,9 +48,9 @@ gem "kubeclient",                       "~>4.0",             :require => false #
 gem "linux_admin",                      "~>2.0", ">=2.0.1",  :require => false
 gem "listen",                           "~>3.2",             :require => false
 gem "log_decorator",                    "~>0.1",             :require => false
-gem "manageiq-api-client",              "~>0.3.4",           :require => false
+gem "manageiq-api-client",              "=0.3.6",           :require => false
 gem "manageiq-loggers",                 "~>1.0",             :require => false
-gem "manageiq-messaging",               "~>1.0", ">=1.0.3",  :require => false
+gem "manageiq-messaging",               "=1.1.1",  :require => false
 gem "manageiq-password",                "~>1.0",             :require => false
 gem "manageiq-postgres_ha_admin",       "~>3.1",             :require => false
 gem "manageiq-ssh-util",                "~>0.1.1",           :require => false
@@ -61,9 +62,9 @@ gem "net-ping",                         "~>1.7.4",           :require => false
 gem "openscap",                         "~>0.4.8",           :require => false
 gem "optimist",                         "~>3.0",             :require => false
 gem "pg",                               ">=1.3", "!= 1.4.0", :require => false # 1.4.0 caused https://github.com/ged/ruby-pg/issues/466
-gem "pg-dsn_parser",                    "~>0.1.0",           :require => false
+gem "pg-dsn_parser",                    "=0.1.0",           :require => false
 gem "query_relation",                   "~>0.1.0",           :require => false
-gem "rack",                             ">=2.2.3.1",         :require => false
+gem "rack",                             "=2.2.4",         :require => false
 gem "rack-attack",                      "~>6.5.0",           :require => false
 gem "rails",                            "~>6.0.4", ">=6.0.5.1"
 gem "rails-i18n",                       "~>6.x"
@@ -72,11 +73,11 @@ gem "rest-client",                      "~>2.1.0",           :require => false
 gem "ripper_ruby_parser",               "~>1.5.1",           :require => false
 gem "ruby-progressbar",                 "~>1.7.0",           :require => false
 gem "rubyzip",                          "~>2.0.0",           :require => false
-gem "rugged",                           "~>1.1",             :require => false
+gem "rugged",                           "=1.4.4",             :require => false
 gem "snmp",                             "~>1.2.0",           :require => false
 gem "sprockets",                        "~>3.7.2",           :require => false
 gem "sync",                             "~>0.5",             :require => false
-gem "sys-filesystem",                   "~>1.4.3"
+gem "sys-filesystem",                   "=1.4.3"
 gem "terminal",                                              :require => false
 gem "wim_parser",                       "~>1.0",             :require => false
 
