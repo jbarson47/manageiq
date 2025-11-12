@@ -13,7 +13,8 @@ gem "manageiq-gems-pending", ">0", :git => "https://github.com/ManageIQ/manageiq
 # when using this Gemfile inside a providers Gemfile, the dependency for the provider is already declared
 def manageiq_plugin(plugin_name)
   unless dependencies.detect { |d| d.name == plugin_name }
-    gem plugin_name, :git => "https://github.com/ManageIQ/#{plugin_name}", :branch => "radjabov"
+    gem plugin_name, :git => "https://github.com/ManageIQ/#{plugin_name}", :tag => "radjabov" unless ["manageiq-ui-classic"].include?(plugin_name)
+    gem plugin_name, :git => "https://github.com/jbarson47/#{plugin_name}", :branch => "radjabov" if ["manageiq-ui-classic"].include?(plugin_name)
   end
 end
 
